@@ -9,7 +9,7 @@ curl -X GET -u thajudheen:aaaaa https://api.github.com/users/thajudheen/repos | 
   xargs -L1 git clone
 
 # 2nd working CLI
-curl -X GET -u thajudheen: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 https://api.github.com/users/thajudheen/repos | grep -o 'git@[^"]*' | xargs -L1 git clone
+curl -X GET -u thajudheen:bbbbb https://api.github.com/users/thajudheen/repos | grep -o 'git@[^"]*' | xargs -L1 git clone
 
 
 # 3rd  working CLI
@@ -18,9 +18,7 @@ curl -H 'Authorization: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' "https://api.gi
 
 curl -H 'Authorization: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' "https://api.github.com/users/$GHUSER/repos?&per_page=1000" | jq -r '.[]|.clone_url' | xargs -L1 git clone
 
-# Call the function in Bash script
-
-# Usage: gh-clone-user (user)
+# Call the function in Bash script. Usage: gh-clone-user (user)
 gh-clone-user() {
   curl -sL "https://api.github.com/users/$1/repos?per_page=1000" | jq -r '.[]|.clone_url' | xargs -L1 git clone
 }
